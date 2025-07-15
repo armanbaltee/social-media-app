@@ -1,0 +1,42 @@
+$primary-color: #1877f2;
+$light-gray: #f0f2f5;
+$border-color: #ccd0d5;
+$text-color: #1c1e21;
+$secondary-text: #65676b;
+
+
+.button-section {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid $border-color;
+  padding-top: 10px;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: $secondary-text;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    img {
+      width: 20px;
+      height: 20px;
+      transition: filter 0.2s;
+    }
+
+    // Color SVG icon blue when liked
+    .liked-icon {
+      color: $primary-color;
+    }
+
+    &.active {
+      color: $primary-color;
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

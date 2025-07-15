@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Create Post</h2>
+
+<form [formGroup]="postForm" (ngSubmit)="submitPost()" class="post-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" placeholder="What's on your mind?" />
+    <mat-error *ngIf="postForm.get('description')?.invalid && postForm.get('description')?.touched">
+      Description is required
+    </mat-error>
+  </mat-form-field>
+
+  <label class="upload-label" for="media-upload">
+    📎 Add Photo/Video
+  </label>
+  <input
+    id="media-upload"
+    type="file"
+    (change)="onFileSelected($event)"
+    multiple
+    accept="image/*,video/*"
+    hidden
+  />
+
+  <div class="preview-section" *ngIf="previewUrls.length > 0">
+  <div class="preview-item" *ngFor="let url of previewUrls; let i = index">
+    <button type="button" class="remove-btn" (click)="removeFile(i)">✕</button>
+
+    <ng-container *ngIf="url.includes('image'); else videoBlock">
+      <img [src]="url" class="preview-image" />
+    </ng-container>
+
+    <ng-template #videoBlock>
+      <video [src]="url" controls class="preview-video"></video>
+    </ng-template>
+  </div>
+</div>
+
+
+  <div class="modal-actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="postForm.invalid">
+      Post
+    </button>
+    <button mat-button type="button" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>

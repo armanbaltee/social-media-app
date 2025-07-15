@@ -1,0 +1,18 @@
+<div class="button-section">
+  <div
+    class="like-btn"
+    [ngClass]="{ active: post.isLiked }"
+    (click)="likePost(post.id)"
+  >
+    <img src="../../../assets/like.svg" [ngClass]="{ 'liked-icon': post.isLiked }" alt="Like" />
+    <span>{{ post.likeCount }}</span>
+  </div>
+  <div class="comment-btn" (click)="toggleComments(post.id)">
+    <img src="../../../assets/comment.svg" alt="Comment" />
+    <span>{{ post.commentCount || 0 }}</span>
+  </div>
+  <div class="share-btn" (click)="sharePost(post.id)">
+    <img src="../../../assets/share.svg" alt="Share" />
+    <span>{{ post.shareCount || 0 }}</span>
+  </div>
+</div>

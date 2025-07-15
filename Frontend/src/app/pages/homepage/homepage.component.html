@@ -1,0 +1,121 @@
+<app-header></app-header>
+
+<div class="main-container">
+  <div class="content-area">
+    <!-- <div class="post-container">
+      <form [formGroup]="postForm" (submit)="submitPost()">
+        <div class="post-description">
+          <input
+            type="text"
+            placeholder="What's on your mind?"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="post-upload">
+          <div class="upload-media">
+            <label for="media-upload" class="upload-label">📎 Add Photo/Video</label>
+            <input
+              type="file"
+              id="media-upload"
+              (change)="onFileSelected($event)"
+              multiple
+              accept="image/*,video/*"
+              hidden
+            />
+            <p class="file-name" *ngIf="filesCollection.length">
+              {{ filesCollection.length }} file(s) selected
+            </p>
+          </div>
+
+          <div class="preview-section" *ngIf="previewUrls.length > 0">
+            <div class="preview-item" *ngFor="let url of previewUrls">
+              <ng-container *ngIf="url.includes('image'); else videoBlock">
+                <img [src]="url" class="preview-image" />
+              </ng-container>
+              <ng-template #videoBlock>
+                <video [src]="url" controls class="preview-video"></video>
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="upload-button">
+            <button type="submit">Post</button>
+          </div>
+        </div>
+      </form>
+    </div> -->
+
+    <div class="post-container">
+      <div class="trigger-input" (click)="openPostDialog()">
+        What's on your mind?
+      </div>
+    </div>
+
+    <div class="feedsection" *ngFor="let post of postDatas">
+      <div class="user-info">
+        <div class="profile-img">
+          <img src="../../../assets/profile.png" alt="User Profile" />
+        </div>
+        <div class="info">
+          <div class="info-left">
+            <p>{{ post.userID?.name }}</p>
+            <p>{{ post.createdAt | date : "short" }}</p>
+          </div>
+          <div class="three-dot-btn" (click)="toggleMenu(post._id)">
+            <img src="../../../assets/menu.svg" alt="" />
+          </div>
+
+          <div
+            class="info-right"
+            *ngIf="
+              openedMenuPostId === post._id && getUserToken === post.userID?._id
+            "
+          >
+            <button (click)="deletePost(post.id)" class="delete-btn">
+              Delete
+            </button>
+            <button class="update-btn" (click)="updatePost(post.id)">Update</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-upload-picture">
+        <div class="post-description">
+          <p>{{ post.desc }}</p>
+        </div>
+
+        <div
+          class="media-gallery"
+          [ngClass]="{ 'single-media': post.mediaPaths.length === 1 }"
+          *ngIf="post.mediaPaths && post.mediaPaths.length > 0"
+        >
+          <div class="media-item" *ngFor="let filePath of post.mediaPaths">
+            <ng-container
+              *ngIf="
+                filePath.endsWith('.jpg') ||
+                  filePath.endsWith('.jpeg') ||
+                  filePath.endsWith('.png') ||
+                  filePath.endsWith('.gif');
+                else videoMedia
+              "
+            >
+              <img
+                [src]="'http://localhost:7000/' + filePath"
+                alt="Uploaded Image"
+              />
+            </ng-container>
+            <ng-template #videoMedia>
+              <video
+                [src]="'http://localhost:7000/' + filePath"
+                controls
+              ></video>
+            </ng-template>
+          </div>
+        </div>
+
+        <app-action [post]="post"></app-action>
+      </div>
+    </div>
+  </div>
+</div>

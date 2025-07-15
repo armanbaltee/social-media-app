@@ -1,0 +1,20 @@
+<app-header />
+
+<div class="profile-list">
+  <div class="profile-card" *ngFor="let user of allUser">
+    <div class="profile-image">
+      <img src="../../../assets/profile.png" alt="User Profile Picture">
+    </div>
+    <div class="profile-details">
+      <div class="user-name">
+        <p>{{user.name}}</p>
+      </div>
+      <div class="action-buttons">
+        <button class="add-friend">Add Friend</button>
+        <button class="remove-friend">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Duplicate .profile-card as needed -->
+</div>

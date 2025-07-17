@@ -53,4 +53,12 @@ export class PagesService {
     return this.http.get(`${this.serverFriendurl}/getfriend`);
   }
 
+  addFriendApiCall(payload:any){
+    return this.http.post(`${this.serverFriendurl}/addfriend`, payload);
+  }
+
+  friendRequestApiCall(){
+    return this.http.get(`${this.serverFriendurl}/request`);
+  }
+
 }

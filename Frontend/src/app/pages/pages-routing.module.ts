@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { pageGuard } from './guard/page.guard';
 import { FriendlistComponent } from './friendlist/friendlist.component';
+import { FriendrequestComponent } from './friendrequest/friendrequest.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'friends',
     component: FriendlistComponent,
+    canActivate: [pageGuard]
+  },
+  {
+    path: 'friendrequest',
+    component: FriendrequestComponent,
     canActivate: [pageGuard]
   }
 ];

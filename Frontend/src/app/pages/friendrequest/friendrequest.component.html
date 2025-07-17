@@ -1,0 +1,18 @@
+<app-header />
+
+<div class="profile-list">
+  <div class="profile-card" *ngFor="let user of allUser">
+    <div class="profile-image">
+      <img src="../../../assets/profile.png" alt="User Profile Picture">
+    </div>
+    <div class="profile-details">
+      <div class="user-name">
+        <p>{{user.sender.name}}</p>
+      </div>
+      <div class="action-buttons">
+        <button class="add-friend" (click)="accept()">Accept</button>
+        <button class="remove-friend" (click)="reject()">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -23,4 +23,7 @@ export class HeaderComponent {
   friendPage(){
     return this.router.navigate(['/friends'])
   }
+  friendRequest(){
+    return this.router.navigate(['/friendrequest']);
+  }
 }

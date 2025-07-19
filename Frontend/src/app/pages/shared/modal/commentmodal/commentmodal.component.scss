@@ -1,0 +1,126 @@
+// ==============================
+// 🖼️ Post Media Section
+// ==============================
+.post-media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  .media-item {
+    flex: 1 1 calc(50% - 8px);
+    border-radius: 8px;
+    overflow: hidden;
+
+    &.single {
+      flex: 1 1 100%;
+    }
+
+    .media-img,
+    .media-video {
+      width: 100%;
+      max-height: 250px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+}
+
+// ==============================
+// 💬 Modal Content Scroll Area
+// ==============================
+.comment-modal-content {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+
+// ==============================
+// 📭 No Comments Text
+// ==============================
+.no-comments {
+  color: #65676b;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+// ==============================
+// 🧾 Comment List
+// ==============================
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+// ==============================
+// 👤 Avatar
+// ==============================
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+// ==============================
+// 💬 Comment Bubble
+// ==============================
+.comment-bubble {
+  background-color: #f0f2f5;
+  padding: 8px 12px;
+  border-radius: 18px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.comment-header {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: #050505;
+}
+
+// ==============================
+// ✍️ Comment Form
+// ==============================
+.comment-form-wrapper {
+  border-top: 1px solid #ddd;
+  padding: 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+  .full-width {
+    flex: 1;
+  }
+}
+
+mat-icon {
+  font-size: 20px;
+  color: #1877f2;
+}
+
+button[mat-icon-button][disabled] mat-icon {
+  color: #ccc;
+}

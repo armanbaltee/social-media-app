@@ -18,6 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FriendlistComponent } from './friendlist/friendlist.component';
 import { FriendrequestComponent } from './friendrequest/friendrequest.component';
+import { FriendComponent } from './friend/friend.component';
+import { CommentmodalComponent } from './shared/modal/commentmodal/commentmodal.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { FriendrequestComponent } from './friendrequest/friendrequest.component'
     ActionComponent,
     PostmodalComponent,
     FriendlistComponent,
-    FriendrequestComponent
+    FriendrequestComponent,
+    FriendComponent,
+    CommentmodalComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +47,8 @@ import { FriendrequestComponent } from './friendrequest/friendrequest.component'
     MatButtonModule,
     MatInputModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ]
 })
 export class PagesModule { }

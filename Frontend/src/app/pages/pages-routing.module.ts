@@ -4,6 +4,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { pageGuard } from './guard/page.guard';
 import { FriendlistComponent } from './friendlist/friendlist.component';
 import { FriendrequestComponent } from './friendrequest/friendrequest.component';
+import { FriendComponent } from './friend/friend.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'friendrequest',
     component: FriendrequestComponent,
+    canActivate: [pageGuard]
+  },
+  {
+    path: 'friendpage',
+    component: FriendComponent,
     canActivate: [pageGuard]
   }
 ];

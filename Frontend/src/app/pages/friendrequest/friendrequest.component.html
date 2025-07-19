@@ -10,7 +10,7 @@
         <p>{{user.sender.name}}</p>
       </div>
       <div class="action-buttons">
-        <button class="add-friend" (click)="accept()">Accept</button>
+        <button class="add-friend" (click)="accept(user._id)">Accept</button>
         <button class="remove-friend" (click)="reject()">Reject</button>
       </div>
     </div>

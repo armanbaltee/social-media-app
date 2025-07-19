@@ -7,5 +7,7 @@ routes.post('/upload', middleware.verifyToken, postController.uploadPost)
 routes.get('/getpost', postController.getPostData);
 routes.delete('/delete/:id', postController.deletePostData);
 routes.patch('/liked/:id', middleware.verifyToken, postController.postLiked)
+routes.post('/comment', middleware.verifyToken, postController.postComment)
+routes.get('/getcomments/:id', postController.getAllComment);
 
 module.exports = routes

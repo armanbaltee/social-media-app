@@ -21,7 +21,7 @@ export class FriendrequestComponent implements OnInit {
     this.pageService.friendRequestApiCall().subscribe({
       next: (res:any)=>{
         this.allUser = res.list;
-        console.log(this.allUser)
+        // console.log(this.allUser)
         this.snackBar.open('Suceesfully get all request', 'Close', {
           duration: 3000,
           panelClass: ['success-snackbar']
@@ -35,7 +35,23 @@ export class FriendrequestComponent implements OnInit {
       }
     })
   }
-  accept(){}
+  accept(requestId:any){
+    this.pageService.acceptRequestApiCall({requestId}).subscribe({
+      next: (res)=>{
+        this.snackBar.open('Request accept', 'Close', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+        this.allUser = this.allUser.filter(u => u._id !== requestId);
+      },
+      error: (err)=>{
+        this.snackBar.open(`Error: ${err.message}`, 'Close', {
+          duration: 3000,
+          panelClass: ['error-snackbar']
+        })
+      }
+    })
+  }
   reject(){}
 
 }

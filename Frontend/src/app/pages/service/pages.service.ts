@@ -61,4 +61,26 @@ export class PagesService {
     return this.http.get(`${this.serverFriendurl}/request`);
   }
 
+  acceptRequestApiCall(data: { requestId: string }) {
+  return this.http.post(`${this.serverFriendurl}/accept`, data);
+}
+
+getAllFriendApiCall(){
+  return this.http.get(`${this.serverFriendurl}/friend`);
+}
+
+deleteFriendApiCall(id:string){
+  return this.http.delete(`${this.serverFriendurl}/deletefriend/${id}`)
+}
+
+
+getCommentsApiCall(postId: string) {
+  return this.http.get<any>(`${this.serverUrl}/getcomments/${postId}`);
+}
+
+createCommentApiCall(data: { postId: string, text: string }) {
+  return this.http.post<any>(`${this.serverUrl}/comment`, data);
+}
+
+
 }

@@ -11,6 +11,33 @@ $secondary-text: #65676b;
   border-top: 1px solid $border-color;
   padding-top: 10px;
 
+  .liked-icon{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: $secondary-text;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    mat-icon {
+      font-size: 20px;
+      transition: color 0.2s;
+    }
+
+    &.active {
+      color: $primary-color;
+
+      mat-icon {
+        color: $primary-color;
+      }
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
   div {
     display: flex;
     align-items: center;

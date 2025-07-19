@@ -1,0 +1,22 @@
+<app-header />
+
+
+<div class="profile-list">
+  <div class="profile-card" *ngFor="let friend of allFriend">
+    <div class="profile-image">
+      <img src="../../../assets/profile.png" alt="User Profile Picture" />
+    </div>
+    <div class="profile-details">
+      <div class="user-name" >
+        <p>{{friend.sender.name}}</p>
+      </div>
+      <div class="action-buttons">
+        <div class="action-buttons">
+          <button (click)="deleteFriend(friend._id)">Delete</button>
+        </div>
+
+        <button class="remove-friend">Block</button>
+      </div>
+    </div>
+  </div>
+</div>

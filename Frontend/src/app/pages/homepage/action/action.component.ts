@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { PagesService } from '../../service/pages.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommentmodalComponent } from '../../shared/modal/commentmodal/commentmodal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-action',
@@ -11,7 +13,7 @@ export class ActionComponent {
   @Input() post: any;
   getUserToken = this.pageService.getUserId();
 
-  constructor(private pageService: PagesService, private snackBar: MatSnackBar) {}
+  constructor(private pageService: PagesService, private snackBar: MatSnackBar, private dialog: MatDialog,) {}
 
   likePost(postId: string): void {
     const payload = { userId: this.getUserToken };
@@ -43,9 +45,22 @@ export class ActionComponent {
     });
   }
 
-  toggleComments(postId: string): void {
-    
-  }
+openCommentDialog(post: any): void {
+  const dialogRef = this.dialog.open(CommentmodalComponent, {
+    width: '500px',
+    data: { post },
+    disableClose: false,
+    autoFocus: false,
+    restoreFocus: true
+  });
+
+  dialogRef.afterClosed().subscribe((updatedCommentCount: number) => {
+    if (typeof updatedCommentCount === 'number') {
+      this.post.commentCount = updatedCommentCount;
+    }
+  });
+}
+
 
   sharePost(postId: string): void {
     

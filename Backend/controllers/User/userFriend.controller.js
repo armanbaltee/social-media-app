@@ -89,12 +89,12 @@ const addFriend = async (req, res)=>{
     const receiverId = req.body._id;
     try {
         const senderId = req.user.id;
-        console.log("diewd", senderId)
+        // console.log("diewd", senderId)
         const user = req.body;
         userList = [];
 
         const people = await FriendRequest.find();
-        console.log('people===', people)
+        // console.log('people===', people)
         if(!people){
             return res.status(500).json({message: "No request found"});
         }
@@ -121,7 +121,61 @@ const addFriend = async (req, res)=>{
     }
 }
 
+// const getAllFriend = async (req, res)=>{
+//   try {
+//     const userId = req.user.id;
+
+//     const friend = await FriendList.find({user: userId}).populate('friendByID', 'name', 'User');
+//     // console.log(friend);
+
+//     if(!friend){
+//       return res.status(500).json({message: "No friend found"});
+//     }
+
+//     res.status(200).json({message: "Friend are successfully find", data: friend});
+
+//   } catch (error) {
+//     return res.status(500).json({message: "Server Error:", err: error,message});
+//   }
+// }
+
+
+const getAllFriend = async (req, res)=>{
+  try {
+    const userId = req.user.id;
+
+    const friend = await FriendRequest.find({$and: [{receiver: userId}, {status: "accepted"}]}).populate('sender', 'name', 'User');
+    // console.log(friend);
+
+    if(!friend){
+      return res.status(500).json({message: "No friend found"});
+    }
+
+    res.status(200).json({message: "Friend are successfully find", data: friend});
+
+  } catch (error) {
+    return res.status(500).json({message: "Server Error:", err: error,message});
+  }
+}
+
+const deleteFriend = async (req, res)=>{
+  try {
+    const id = req.params.id;
+    // console.log('id------->', id)
+    const friend = await FriendRequest.findById(id);
+    if(!friend){
+      return res.status(500).json({message: "No friend found"});
+    }
+    await FriendRequest.deleteOne({ _id: id });
+    res.status(200).json({message: "User Delete Successfull"});
+  } catch (error) {
+    return res.status(500).json({message: "Error in fetching", err: error.message})
+  }
+}
+
 module.exports = {
     getAllUser,
-    addFriend
+    addFriend,
+    getAllFriend,
+    deleteFriend
 }

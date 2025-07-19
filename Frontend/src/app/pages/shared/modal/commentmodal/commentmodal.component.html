@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>Comments</h2>
+
+<div class="post-media" *ngIf="post?.mediaPaths?.length > 0">
+  <div
+    class="media-item"
+    *ngFor="let filePath of post.mediaPaths"
+    [ngClass]="{ 'single': post.mediaPaths.length === 1 }"
+  >
+    <ng-container *ngIf="isImage(filePath); else videoBlock">
+      <img
+        [src]="'http://localhost:7000/' + filePath"
+        alt="Post image"
+        class="media-img"
+      />
+    </ng-container>
+
+    <ng-template #videoBlock>
+      <video
+        [src]="'http://localhost:7000/' + filePath"
+        class="media-video"
+        controls
+      ></video>
+    </ng-template>
+  </div>
+</div>
+
+<mat-dialog-content class="comment-modal-content">
+  <div *ngIf="comments.length === 0" class="no-comments">
+    <p>No comments yet. Be the first to comment!</p>
+  </div>
+
+  <div #scrollContainer class="comment-list" *ngIf="comments.length > 0">
+    <div *ngFor="let comment of comments" class="comment-item">
+      <img src="assets/profile.png" alt="User" class="avatar" />
+      <div class="comment-bubble">
+        <div class="comment-header">
+          <strong>{{ comment.commentByID.name }}</strong>
+        </div>
+        <div class="comment-text">
+          {{ comment.commentMsg }}
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="comment-form-wrapper">
+  <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
+    <img src="assets/profile.png" alt="User" class="avatar" />
+
+    <mat-form-field appearance="outline" class="full-width">
+      <input
+        matInput
+        formControlName="comment"
+        placeholder="Write a comment..."
+      />
+    </mat-form-field>
+
+    <button
+      mat-icon-button
+      color="primary"
+      type="submit"
+      [disabled]="commentForm.invalid"
+      aria-label="Post Comment"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+  </form>
+</mat-dialog-actions>

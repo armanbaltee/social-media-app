@@ -1,0 +1,87 @@
+// Wrapper for the full list of cards
+.profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background-color: #f0f2f5;
+  min-height: calc(100vh - 80px); // Adjust based on <app-header /> height
+}
+
+// Single profile card styling
+.profile-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  max-width: 500px;
+  width: 100%;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .profile-image {
+    flex-shrink: 0;
+
+    img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .profile-details {
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .user-name {
+      font-weight: 600;
+      font-size: 16px;
+      color: #050505;
+      margin-bottom: 8px;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+
+      button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &.add-friend {
+          background-color: #1877f2;
+          color: #fff;
+
+          &:hover {
+            background-color: #166fe5;
+          }
+        }
+
+        &.remove-friend {
+          background-color: #e4e6eb;
+          color: #050505;
+
+          &:hover {
+            background-color: #d8dadf;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 const Post = require("../../models/post/post.model");
+const PostComment = require('../../models/post/postComment.model')
 const multer = require("multer");
 const path = require('path')
 
@@ -112,9 +113,45 @@ const postLiked = async (req, res)=>{
   }
 }
 
+const getAllComment = async (req, res)=>{
+  try {
+    const postId = req.params.id;
+    console.log("Post Id ----->", postId)
+    const comments = await PostComment.find({ postID: postId }).populate('commentByID', 'name', 'User');
+    if(!comments){
+      return res.status(500).json({message: "No comments"});
+    }
+    res.status(200).json({message: "All comments", comment: comments});
+  } catch (error) {
+    return res.status(500).json({message: "Server Error: ", err: error.message})
+  }
+}
+
+const postComment = async (req, res)=>{
+  try {
+    const userID = req.user.id;
+    const data = req.body;
+    const commentData = {
+      postID: data.postId,
+      commentByID: userID,
+      commentMsg: data.text,
+    }
+    console.log(commentData)
+
+    await PostComment.create(commentData)
+    res.status(200).json({Message: "Comment added", data: commentData});
+
+
+  } catch (error) {
+    return res.status(500).json({message: "Server Error: ", err: error.message})
+  }
+}
+
 module.exports = {
   uploadPost,
   getPostData,
   deletePostData,
-  postLiked
+  postLiked,
+  postComment,
+  getAllComment
 };
